@@ -41,6 +41,7 @@
         }
     </style>
 </head>
+    <script src="https://accounts.google.com/gsi/clent" async defer></script>    
 <body class="bg-gray-50">
     <div class="container mx-auto px-4 py-8 max-w-6xl">
         <!-- Header -->
@@ -68,10 +69,15 @@
                         </div>
                     </div>
                 </div>
-                <button id="loginBtn" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">
-                    <i class="fas fa-sign-in-alt mr-2"></i>Login
-                </button>
-                <div class="relative">
+                <!-- Google Sign-In button replacing old login button -->
+        <div id="googleSignInContainer">
+            <div id="g_id_onload"
+                data-client_id="383425483822-lerqs51h37lthfeo9citm9u1p8emlv70.apps.googleusercontent.com"
+                data-callback="handleCredentialResponse">
+            </div>
+            <div class="g_id_signin" data-type="standard"></div>
+         </div> 
+         <div class="relative">
                     <button id="viewToggle" class="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition">
                         <i class="fas fa-th-large mr-2"></i>Grid View
                     </button>
@@ -81,6 +87,14 @@
                 </button>
             </div>
         </header>
+        <script>
+    function handleCredentialResponse(response) {
+      console.log("Encoded JWT ID token: " + response.credential);
+      alert('Google login successful!');
+      // Your login logic
+    }
+  </script>
+<body>
         
         <!-- Search and Filter -->
         <div class="bg-white rounded-xl shadow-md p-4 mb-6">
